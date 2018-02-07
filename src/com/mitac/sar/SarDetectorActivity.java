@@ -23,6 +23,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Button;
 import android.os.SystemProperties;
 
 import android.os.UEventObserver;
@@ -32,11 +33,18 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.hardware.SystemSensorManager;
 
+import android.view.View;
+import android.nfc.NfcAdapter;
+import android.content.Intent;
+
 public class SarDetectorActivity extends Activity {
 
 	public LinearLayout linearLayout;
 	private TextView mPSensor = null;
         //private TextView mBrightness = null;
+    private Button mCloseNfc = null;
+    private Button mOpenNfc = null;
+    private NfcAdapter mNfcAdapter;
     private boolean bSarExist = false;
     // The sensor manager.
     private SensorManager mSensorManager;
@@ -128,8 +136,23 @@ if(mPSensor!=null) {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
+
         mPSensor = (TextView)findViewById(R.id.info);
         //mBrightness = (TextView)findViewById(R.id.brightness);
+        mOpenNfc = (Button)findViewById(R.id.open_nfc);
+        mCloseNfc = (Button)findViewById(R.id.close_nfc);
+        if(null!=mOpenNfc && null!=mCloseNfc && null!=mNfcAdapter) {
+            if(mNfcAdapter.isEnabled()) {
+                mOpenNfc.setEnabled(false);
+                mCloseNfc.setEnabled(true);
+            } else {
+                mOpenNfc.setEnabled(true);
+                mCloseNfc.setEnabled(false);
+            }
+        }
+
         linearLayout=(LinearLayout)findViewById(R.id.main); 
         mWwanObserver.startObserving("SUBSYSTEM=platform");
 
@@ -161,5 +184,31 @@ if(mPSensor!=null) {
 
                 //mSensorManager.unregisterListener(mLightSensorListener);
         }
+
+    public boolean turnOnNfc(boolean desiredState) {
+        // Turn NFC on/off
+        if(mNfcAdapter != null) {
+            if (desiredState) {
+                mNfcAdapter.enable();
+            } else {
+                mNfcAdapter.disable();
+            }
+        }
+        return true;
+    }
+
+    public void onCloseNfc(View view) {
+        turnOnNfc(false);
+        //reboot the device after a while
+        Intent intent=new Intent(Intent.ACTION_REBOOT);
+        intent.putExtra("nowait", 1);
+        intent.putExtra("interval", 1);
+        intent.putExtra("window", 0);
+        sendBroadcast(intent);
+    }
+
+    public void onOpenNfc(View view) {
+        turnOnNfc(true);
+    }
 
 }

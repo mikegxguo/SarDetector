@@ -4,5 +4,7 @@
     <string name="hello">Hello World, SarDetectorActivity!</string>
     <string name="app_name">SarDetector</string>
     <string name="brightness">brightness</string>
+    <string name="close_nfc">Close NFC, and reboot</string>
+    <string name="open_nfc">Open NFC</string>
 
 </resources>
