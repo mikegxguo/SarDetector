@@ -189,6 +189,7 @@ if(mPSensor!=null) {
     public void onStop() {
         super.onStop();
         //Log.d(TAG, "onStop");
+        SetData("/sys/module/lte_power/parameters/psensor_event_pop","0");
         mWwanObserver.stopObserving();
     }
 
