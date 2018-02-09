@@ -185,6 +185,13 @@ if(mPSensor!=null) {
                 //mSensorManager.unregisterListener(mLightSensorListener);
         }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        //Log.d(TAG, "onStop");
+        mWwanObserver.stopObserving();
+    }
+
     public boolean turnOnNfc(boolean desiredState) {
         // Turn NFC on/off
         if(mNfcAdapter != null) {
