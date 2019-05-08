@@ -24,7 +24,7 @@ import android.os.Message;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Button;
-import android.os.SystemProperties;
+//import android.os.SystemProperties;
 
 import android.os.UEventObserver;
 import android.hardware.Sensor;
@@ -72,11 +72,11 @@ public class SarDetectorActivity extends Activity {
                 if(bSarExist) {
                     if(mPSensor!=null) mPSensor.setText("Person is detected!!!");
                     linearLayout.setBackgroundColor(Color.RED);
-                    SystemProperties.set("ril.psensor.event.active", "1");
+                    //SystemProperties.set("ril.psensor.event.active", "1");
                 } else {
                     if(mPSensor!=null) mPSensor.setText("Person is out!!!");
                     linearLayout.setBackgroundColor(Color.BLACK);
-                    SystemProperties.set("ril.psensor.event.active", "0");
+                    //SystemProperties.set("ril.psensor.event.active", "0");
                 }
 /*
 if(mPSensor!=null) {
@@ -137,7 +137,7 @@ if(mPSensor!=null) {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
 
@@ -169,16 +169,16 @@ if(mPSensor!=null) {
         mScreenBrightnessMaximum = pm.getMaximumScreenBrightnessSetting();
 */
         //SetData("/sys/module/lte_power/parameters/lte_enable","1");
-        SetData("/sys/module/lte_power/parameters/psensor_event_pop","1");
+        //SetData("/sys/module/lte_power/parameters/psensor_event_pop","1");
 
         if(bSarExist) {
             if(mPSensor!=null) mPSensor.setText("Person is detected!!!");
             linearLayout.setBackgroundColor(Color.RED);
-            SystemProperties.set("ril.psensor.event.active", "1");
+            //SystemProperties.set("ril.psensor.event.active", "1");
         } else {
             if(mPSensor!=null) mPSensor.setText("Person is out!!!");
             linearLayout.setBackgroundColor(Color.BLACK);
-            SystemProperties.set("ril.psensor.event.active", "0");
+            //SystemProperties.set("ril.psensor.event.active", "0");
         }
     }
 
