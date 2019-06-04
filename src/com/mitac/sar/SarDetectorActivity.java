@@ -156,7 +156,7 @@ if(mPSensor!=null) {
         }
 
         linearLayout=(LinearLayout)findViewById(R.id.main); 
-        mWwanObserver.startObserving("SUBSYSTEM=platform");
+        //mWwanObserver.startObserving("SUBSYSTEM=platform");
 
         //SystemProperties.set("ril.psensor.event.pop", "1");
         //SystemProperties.set("ril.psensor.event.active", "0");
@@ -187,6 +187,7 @@ if(mPSensor!=null) {
                 super.onResume();
               //mSensorManager.registerListener(mLightSensorListener, mLightSensor,
               //          LIGHT_SENSOR_RATE_MILLIS * 1000, hRefresh);
+              mWwanObserver.startObserving("SUBSYSTEM=platform");
 
         }
 
@@ -195,6 +196,7 @@ if(mPSensor!=null) {
                 super.onPause();
 
                 //mSensorManager.unregisterListener(mLightSensorListener);
+                mWwanObserver.stopObserving();
         }
 
     @Override
@@ -202,7 +204,7 @@ if(mPSensor!=null) {
         super.onStop();
         //Log.d(TAG, "onStop");
         //SetData("/sys/module/lte_power/parameters/psensor_event_pop","0");
-        mWwanObserver.stopObserving();
+        //mWwanObserver.stopObserving();
     }
 
     public boolean turnOnNfc(boolean desiredState) {
