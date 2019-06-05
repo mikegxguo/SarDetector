@@ -78,6 +78,7 @@ public class SarDetectorActivity extends Activity {
                     linearLayout.setBackgroundColor(Color.BLACK);
                     //SystemProperties.set("ril.psensor.event.active", "0");
                 }
+                if(mPSensor!=null) mPSensor.setTextColor(Color.WHITE);
 /*
 if(mPSensor!=null) {
     DecimalFormat fnum = new DecimalFormat("##0.00"); 
