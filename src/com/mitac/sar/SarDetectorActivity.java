@@ -34,7 +34,7 @@ import android.hardware.SensorManager;
 import android.hardware.SystemSensorManager;
 
 import android.view.View;
-import android.nfc.NfcAdapter;
+//import android.nfc.NfcAdapter;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 
@@ -43,9 +43,9 @@ public class SarDetectorActivity extends Activity {
 	public LinearLayout linearLayout;
 	private TextView mPSensor = null;
         //private TextView mBrightness = null;
-    private Button mCloseNfc = null;
-    private Button mOpenNfc = null;
-    private NfcAdapter mNfcAdapter;
+    //private Button mCloseNfc = null;
+    //private Button mOpenNfc = null;
+    //private NfcAdapter mNfcAdapter;
     private boolean bSarExist = false;
     // The sensor manager.
     private SensorManager mSensorManager;
@@ -140,10 +140,11 @@ if(mPSensor!=null) {
         setContentView(R.layout.main);
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-        mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
+        //mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
 
         mPSensor = (TextView)findViewById(R.id.info);
         //mBrightness = (TextView)findViewById(R.id.brightness);
+/*
         mOpenNfc = (Button)findViewById(R.id.open_nfc);
         mCloseNfc = (Button)findViewById(R.id.close_nfc);
         if(null!=mOpenNfc && null!=mCloseNfc && null!=mNfcAdapter) {
@@ -155,6 +156,7 @@ if(mPSensor!=null) {
                 mCloseNfc.setEnabled(false);
             }
         }
+*/
 
         linearLayout=(LinearLayout)findViewById(R.id.main); 
         //mWwanObserver.startObserving("SUBSYSTEM=platform");
@@ -207,7 +209,7 @@ if(mPSensor!=null) {
         //SetData("/sys/module/lte_power/parameters/psensor_event_pop","0");
         //mWwanObserver.stopObserving();
     }
-
+/*
     public boolean turnOnNfc(boolean desiredState) {
         // Turn NFC on/off
         if(mNfcAdapter != null) {
@@ -233,5 +235,6 @@ if(mPSensor!=null) {
     public void onOpenNfc(View view) {
         turnOnNfc(true);
     }
+*/
 
 }
