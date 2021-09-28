@@ -17,20 +17,28 @@
         android:layout_height="wrap_content"
         android:text="@string/brightness" /-->
     <Button
+        android:id="@+id/reset_psensor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/info"
+        android:clickable="true"
+        android:onClick="onResetPsensor"
+        android:text="@string/reset_psensor" />
+    <!--Button
         android:id="@+id/close_nfc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/info"
         android:clickable="true"
         android:onClick="onCloseNfc"
-        android:text="@string/close_nfc" />
-    <Button
+        android:text="@string/close_nfc" /-->
+    <!--Button
         android:id="@+id/open_nfc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/close_nfc"
         android:clickable="true"
         android:onClick="onOpenNfc"
-        android:text="@string/open_nfc" />
+        android:text="@string/open_nfc" /-->
 
 </LinearLayout>

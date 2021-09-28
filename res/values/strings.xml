@@ -6,5 +6,6 @@
     <string name="brightness">brightness</string>
     <string name="close_nfc">Close NFC</string>
     <string name="open_nfc">Open NFC</string>
+    <string name="reset_psensor">Reset p-sensor</string>
 
 </resources>

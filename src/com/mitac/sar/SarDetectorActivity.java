@@ -42,9 +42,9 @@ public class SarDetectorActivity extends Activity {
 
 	public LinearLayout linearLayout;
 	private TextView mPSensor = null;
-        //private TextView mBrightness = null;
-    private Button mCloseNfc = null;
-    private Button mOpenNfc = null;
+    //private TextView mBrightness = null;
+    //private Button mCloseNfc = null;
+    //private Button mOpenNfc = null;
     private NfcAdapter mNfcAdapter;
     private boolean bSarExist = false;
     // The sensor manager.
@@ -122,15 +122,15 @@ if(mPSensor!=null) {
 */
     public void SetData(String fileName, String message)
     {
-	try{
-	    File file = new File(fileName);
-	    FileOutputStream fout = new FileOutputStream(file);
-	    byte[] bytes = message.getBytes();
-	    fout.write(bytes);
-	    fout.close();
-	} catch (Exception e){
-	    e.printStackTrace();
-	}
+        try{
+            File file = new File(fileName);
+            FileOutputStream fout = new FileOutputStream(file);
+            byte[] bytes = message.getBytes();
+            fout.write(bytes);
+            fout.close();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     /** Called when the activity is first created. */
@@ -144,17 +144,17 @@ if(mPSensor!=null) {
 
         mPSensor = (TextView)findViewById(R.id.info);
         //mBrightness = (TextView)findViewById(R.id.brightness);
-        mOpenNfc = (Button)findViewById(R.id.open_nfc);
-        mCloseNfc = (Button)findViewById(R.id.close_nfc);
-        if(null!=mOpenNfc && null!=mCloseNfc && null!=mNfcAdapter) {
-            if(mNfcAdapter.isEnabled()) {
-                mOpenNfc.setEnabled(false);
-                mCloseNfc.setEnabled(true);
-            } else {
-                mOpenNfc.setEnabled(true);
-                mCloseNfc.setEnabled(false);
-            }
-        }
+        //mOpenNfc = (Button)findViewById(R.id.open_nfc);
+        //mCloseNfc = (Button)findViewById(R.id.close_nfc);
+//        if(null!=mOpenNfc && null!=mCloseNfc && null!=mNfcAdapter) {
+//            if(mNfcAdapter.isEnabled()) {
+//                mOpenNfc.setEnabled(false);
+//                mCloseNfc.setEnabled(true);
+//            } else {
+//                mOpenNfc.setEnabled(true);
+//                mCloseNfc.setEnabled(false);
+//            }
+//        }
 
         linearLayout=(LinearLayout)findViewById(R.id.main); 
         //mWwanObserver.startObserving("SUBSYSTEM=platform");
@@ -232,6 +232,11 @@ if(mPSensor!=null) {
 
     public void onOpenNfc(View view) {
         turnOnNfc(true);
+    }
+
+    public void onResetPsensor(View view) {
+        //try to reset p-sensor's power
+        SetData("/sys/module/lte_misc/parameters/psensor_reset", "99");
     }
 
 }
