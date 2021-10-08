@@ -171,6 +171,7 @@ if(mPSensor!=null) {
 */
         //SetData("/sys/module/lte_power/parameters/lte_enable","1");
         //SetData("/sys/module/lte_power/parameters/psensor_event_pop","1");
+        SetData("/sys/module/lte_misc/parameters/psensor_reset", "99");
 
         if(bSarExist) {
             if(mPSensor!=null) mPSensor.setText("Person is detected!!!");
@@ -234,9 +235,9 @@ if(mPSensor!=null) {
         turnOnNfc(true);
     }
 
-    public void onResetPsensor(View view) {
-        //try to reset p-sensor's power
-        SetData("/sys/module/lte_misc/parameters/psensor_reset", "99");
-    }
+//    public void onResetPsensor(View view) {
+//        //try to reset p-sensor's power
+//        SetData("/sys/module/lte_misc/parameters/psensor_reset", "99");
+//    }
 
 }
