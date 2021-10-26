@@ -138,11 +138,18 @@ if(mPSensor!=null) {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        {
+            Intent intent = new Intent();
+            intent.setClassName("com.mitac.gemini.cdr", "com.mitac.gemini.cdr.ui.main.MainActivity");
+            startActivity(intent);
+            finish();
+            return;
+        }
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-        mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
+//        mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
 
-        mPSensor = (TextView)findViewById(R.id.info);
+//        mPSensor = (TextView)findViewById(R.id.info);
         //mBrightness = (TextView)findViewById(R.id.brightness);
         //mOpenNfc = (Button)findViewById(R.id.open_nfc);
         //mCloseNfc = (Button)findViewById(R.id.close_nfc);
@@ -156,7 +163,7 @@ if(mPSensor!=null) {
 //            }
 //        }
 
-        linearLayout=(LinearLayout)findViewById(R.id.main); 
+//        linearLayout=(LinearLayout)findViewById(R.id.main); 
         //mWwanObserver.startObserving("SUBSYSTEM=platform");
 
         //SystemProperties.set("ril.psensor.event.pop", "1");
@@ -171,17 +178,17 @@ if(mPSensor!=null) {
 */
         //SetData("/sys/module/lte_power/parameters/lte_enable","1");
         //SetData("/sys/module/lte_power/parameters/psensor_event_pop","1");
-        SetData("/sys/module/lte_misc/parameters/psensor_reset", "99");
+//        SetData("/sys/module/lte_misc/parameters/psensor_reset", "99");
 
-        if(bSarExist) {
-            if(mPSensor!=null) mPSensor.setText("Person is detected!!!");
-            linearLayout.setBackgroundColor(Color.RED);
-            //SystemProperties.set("ril.psensor.event.active", "1");
-        } else {
-            if(mPSensor!=null) mPSensor.setText("Person is out!!!");
-            linearLayout.setBackgroundColor(Color.BLACK);
-            //SystemProperties.set("ril.psensor.event.active", "0");
-        }
+//        if(bSarExist) {
+//            if(mPSensor!=null) mPSensor.setText("Person is detected!!!");
+//            linearLayout.setBackgroundColor(Color.RED);
+//            //SystemProperties.set("ril.psensor.event.active", "1");
+//        } else {
+//            if(mPSensor!=null) mPSensor.setText("Person is out!!!");
+//            linearLayout.setBackgroundColor(Color.BLACK);
+//            //SystemProperties.set("ril.psensor.event.active", "0");
+//        }
     }
 
         @Override
@@ -189,7 +196,7 @@ if(mPSensor!=null) {
                 super.onResume();
               //mSensorManager.registerListener(mLightSensorListener, mLightSensor,
               //          LIGHT_SENSOR_RATE_MILLIS * 1000, hRefresh);
-              mWwanObserver.startObserving("SUBSYSTEM=platform");
+//              mWwanObserver.startObserving("SUBSYSTEM=platform");
 
         }
 
@@ -198,7 +205,7 @@ if(mPSensor!=null) {
                 super.onPause();
 
                 //mSensorManager.unregisterListener(mLightSensorListener);
-                mWwanObserver.stopObserving();
+//                mWwanObserver.stopObserving();
         }
 
     @Override
